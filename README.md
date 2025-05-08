@@ -33,7 +33,9 @@
     --> wir können uns weitere Sachen überlegen
 
 ## Datenintegration
-    - wir sollten uns darauf einigen, wie weit wir in die Vergangenheit schauen wollen. Ich würde ab 01.01. 2020 vorschlagen. Die API von Alpha Vantage geht bis 2019 aber in 2019 waren einige seltsame Werte drinnen.
+    - wir sollten uns darauf einigen, wie weit wir in die Vergangenheit schauen wollen. Ich würde ab
+    01.01. 2020 vorschlagen. Die API von Alpha Vantage geht bis 2019 aber in 2019 waren einige
+    seltsame Werte drinnen.
     - wir können darauf achten, dass wir pro Tag immer einen Wert haben
     - wir können die unterschiedlichen Variablen dann in einen gesamten Datensatz integrieren
 
