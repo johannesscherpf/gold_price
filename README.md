@@ -41,4 +41,9 @@
 
 
 ## Weiteres Vorgehen
-- für das weitere Vorgehen können wir dann vielleicht in ein paar Wochen weiter überlegen
+- Vorschlag: Jeder sucht sich bis nächste Woche eine Variable aus, die er für relevant hält
+- für diese Variable überprüfen, dass wir einen vollständigen Datensatz haben
+- auch auf Ausreißer und Co checken, dass der Datensatz insgesamt Sinn ergibt
+- evtl. erste Deskriptive Analysen
+- nächste Woche fügen wir das gemeinsam zusammen
+- dann überlegen wir weiter :D
