@@ -19,5 +19,4 @@ combined_data['Wochentag'] = combined_data['Date'].dt.day_name()
 
 print(combined_data.head(20))
 
-# Optional: Speichere die aktualisierten Daten in eine neue CSV-Datei
 combined_data.to_csv('combined_gold_economic_factors_withweekdays.csv', index=False)
