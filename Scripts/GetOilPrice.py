@@ -9,7 +9,7 @@ end_date = "2025-05-15"
 gold_ticker = 'GLD'
 gold_data = yf.download(gold_ticker, start=start_date, end=end_date, interval='1d')[['Close']]
 
-# Symbol für US-Dollar-Index
+# US-Dollar-Index
 dxy_ticker = 'DX-Y.NYB'
 dxy_data = yf.download(dxy_ticker, start=start_date, end=end_date, interval='1d')[['Close']]
 
@@ -21,7 +21,7 @@ sp500_data = yf.download(sp500_ticker, start=start_date, end=end_date, interval=
 oil_ticker = 'CL=F'
 oil_data = yf.download(oil_ticker, start=start_date, end=end_date, interval='1d')[['Close']]
 
-# Kombiniere alle DataFrames in einen
+# Kombiniere alle DataFrames
 combined_data = pd.concat([
     gold_data.rename(columns={'Close': 'Gold_ETF'}),
     dxy_data.rename(columns={'Close': 'Dollar_Index'}),
@@ -32,8 +32,5 @@ combined_data = pd.concat([
 # Index als Spalte umwandeln
 combined_data.reset_index(inplace=True)
 
-# Speichern in einer CSV-Datei
-csv_filename = 'economic_factors.csv'
-combined_data.to_csv(csv_filename, index=False)
+combined_data.to_csv('economic_factors.csv', index=False)
 
-print(f"Daten erfolgreich in {csv_filename} gespeichert.")
