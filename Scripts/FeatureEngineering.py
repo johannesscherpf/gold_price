@@ -25,4 +25,6 @@ gold=pd.read_csv('../Data/Goldpreis.csv')
 gold['Date'] = pd.to_datetime(combined_data['Date'])
 gold['Wochentag'] = combined_data['Date'].dt.day_name()
 print(gold.groupby(['Wochentag']).count())
+
+
 combined_data.to_csv('combined_gold_economic_factors_withweekdays.csv', index=False)
