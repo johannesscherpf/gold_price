@@ -16,28 +16,29 @@ print(missing_data)
 gold_data['Date'] = pd.to_datetime(gold_data['Date'])
 
 # Wochentage/Monat/Quartal aus Datum extrahieren
-gold_data['Wochentag'] = gold_data['Date'].dt.day_name()
-gold_data['Monat'] = gold_data['Date'].dt.month_name()
-gold_data['Quartal'] = gold_data['Date'].dt.quarter
 gold_data['Tag'] = gold_data['Date'].dt.day
+gold_data['Monat'] = gold_data['Date'].dt.month
 gold_data['Jahr'] = gold_data['Date'].dt.year
+gold_data['Wochentag'] = gold_data['Date'].dt.day_name()
+gold_data['Quartal'] = gold_data['Date'].dt.quarter
+
 
 
 # One-Hot-Encoding für Wochentage
 weekday_dummies = pd.get_dummies(gold_data['Wochentag'], prefix='Weekday')
 gold_data = pd.concat([gold_data, weekday_dummies], axis=1)
 
-day_dummies = pd.get_dummies(gold_data['Tag'], prefix='Tag')
-gold_data = pd.concat([gold_data, day_dummies], axis=1)
+#day_dummies = pd.get_dummies(gold_data['Tag'], prefix='Tag')
+#gold_data = pd.concat([gold_data, day_dummies], axis=1)
 
-monat_dummies = pd.get_dummies(gold_data['Monat'], prefix='Monat')
-gold_data = pd.concat([gold_data, monat_dummies], axis=1)
+#monat_dummies = pd.get_dummies(gold_data['Monat'], prefix='Monat')
+#gold_data = pd.concat([gold_data, monat_dummies], axis=1)
 
 quartalsdummies = pd.get_dummies(gold_data['Quartal'], prefix='Quartal')
-gold_data = pd.concat([gold_data, monat_dummies, quartalsdummies], axis=1)
+gold_data = pd.concat([gold_data, quartalsdummies], axis=1)
 
-jahr_dummies = pd.get_dummies(gold_data['Jahr'], prefix='Jahr')
-gold_data = pd.concat([gold_data, jahr_dummies], axis=1)
+#jahr_dummies = pd.get_dummies(gold_data['Jahr'], prefix='Jahr')
+#gold_data = pd.concat([gold_data, jahr_dummies], axis=1)
 
 
 gold_data.sort_values(by='Date', ascending=False, inplace=True)
