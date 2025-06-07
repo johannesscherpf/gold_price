@@ -32,5 +32,5 @@ combined_data = pd.concat([
 # Index als Spalte umwandeln
 combined_data.reset_index(inplace=True)
 
-combined_data.to_csv('economic_factors.csv', index=False)
+combined_data.to_csv('../Data/economic_factors.csv', index=False)
 
