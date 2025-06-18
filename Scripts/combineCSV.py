@@ -1,9 +1,9 @@
 import pandas as pd
 
-gold_data_existing = pd.read_csv('Goldpreis.csv', index_col=0)
+gold_data_existing = pd.read_csv('../data/Goldpreis.csv', index_col=0)
 gold_data_existing.reset_index(inplace=True)
 
-gold_data_existing.columns = ['Date', 'Goldpreis_am_Tag']
+gold_data_existing.columns = ['Date', 'Goldpreis','Goldpreis_gestern']
 
 economic_factors_csv_file = '../Data/economic_factors.csv'
 economic_data = pd.read_csv(economic_factors_csv_file)
