@@ -41,5 +41,5 @@ first_date,last_date,columns,best_params,mean_test_score,rmse,mae
 2025-01-02 00:00:00,2025-06-18 00:00:00,"['Date', 'Goldpreis', 'SP500']","{'colsample_bytree': 0.8, 'learning_rate': 0.1, 'max_depth': 5, 'n_estimators': 750, 'subsample': 0.8}",-11996.876865731221,50.08923686725769,42.69402636718742
 
 
-probably the best idk (sets with only data from 2025 on seem better but that smells like overfitting IMO)
+probably the best idk (sets with only data from 2025 on seem better but that smells like overfitting IMO),,Features seem to have little to no Impact on my prediction at least idk if its broken
 2021-02-08 00:00:00,2025-06-18 00:00:00,"['Date', 'Goldpreis']","{'colsample_bytree': 0.2, 'learning_rate': 0.1, 'max_depth': 3, 'n_estimators': 1000, 'subsample': 1.0}",-53951.75748869614,56.95492756597663,45.55671874999989
