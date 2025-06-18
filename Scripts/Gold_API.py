@@ -18,12 +18,20 @@ if "Time Series (Daily)" in data:
     # Die Daten in ein pandas DataFrame umwandeln
     df = pd.DataFrame.from_dict(time_series, orient='index')
     df = df.astype(float)  # Umwandeln der Daten in numerische Werte
-    df = df.rename(columns={'4. close': 'Goldpreis_am_Tag'})
-    df = df['Goldpreis_am_Tag']  # Spalten löschen
     df.index = pd.to_datetime(df.index)  # Index als Datum umwandeln
 
-    # Speichern der Daten als CSV-Datei
-    df.to_csv(r'C:\Users\johan\Desktop\Neuer Ordner\Goldpreis.csv')
+    # Nur die Spalte '4. close' auswählen und umbenennen
+    df = df[['4. close']]
+    df = df.rename(columns={'4. close': 'Goldpreis'})
+
+    # Die Spalte für den Preis am nächsten Tag erstellen
+    df['Goldpreis_gestern'] = df['Goldpreis'].shift(-1)
+
+    # Fehlende Werte am Ende auffüllen
+    df = df.dropna()
+
+    # In CSV-Datei speichern
+    df.to_csv(r'../data/Goldpreis.csv')
     print('Daten wurden erfolgreich als CSV gespeichert.')
 
     # Ausgabe der ersten Zeilen des DataFrames
