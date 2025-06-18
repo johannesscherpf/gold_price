@@ -1,0 +1,45 @@
+first_date,last_date,columns,best_params,mean_test_score,rmse,mae
+
+2021-02-08 00:00:00,2025-06-18 00:00:00,"['Date', 'Goldpreis', 'Goldpreis_gestern', 'SP500']","{'colsample_bytree': 0.2, 'learning_rate': 0.1, 'max_depth': 3, 'n_estimators': 1000, 'subsample': 1.0}",-53951.75748869614,56.95492756597663,45.55671874999989
+
+2022-01-03 00:00:00,2025-06-18 00:00:00,"['Date', 'Goldpreis', 'Goldpreis_gestern', 'SP500']","{'colsample_bytree': 0.8, 'learning_rate': 0.01, 'max_depth': 3, 'n_estimators': 500, 'subsample': 1.0}",-48279.7876843429,78.3823070571174,66.48736914062492
+
+2023-01-03 00:00:00,2025-06-18 00:00:00,"['Date', 'Goldpreis', 'Goldpreis_gestern', 'SP500']","{'colsample_bytree': 0.2, 'learning_rate': 0.1, 'max_depth': 3, 'n_estimators': 1000, 'subsample': 0.8}",-60034.90310285108,68.25571210467056,55.621711914062416
+
+2024-01-02 00:00:00,2025-06-18 00:00:00,"['Date', 'Goldpreis', 'Goldpreis_gestern', 'SP500']","{'colsample_bytree': 1.0, 'learning_rate': 0.1, 'max_depth': 5, 'n_estimators': 500, 'subsample': 1.0}",-38333.73938858279,58.03813032319995,44.94229296874992
+
+2025-01-02 00:00:00,2025-06-18 00:00:00,"['Date', 'Goldpreis', 'Goldpreis_gestern', 'SP500']","{'colsample_bytree': 0.8, 'learning_rate': 0.1, 'max_depth': 5, 'n_estimators': 750, 'subsample': 0.8}",-11996.876865731221,50.08923686725769,42.69402636718742
+
+2021-02-08 00:00:00,2025-06-18 00:00:00,"['Date', 'Goldpreis']","{'colsample_bytree': 0.2, 'learning_rate': 0.1, 'max_depth': 3, 'n_estimators': 1000, 'subsample': 1.0}",-53951.75748869614,56.95492756597663,45.55671874999989
+
+2022-01-03 00:00:00,2025-06-18 00:00:00,"['Date', 'Goldpreis']","{'colsample_bytree': 0.8, 'learning_rate': 0.01, 'max_depth': 3, 'n_estimators': 500, 'subsample': 1.0}",-48279.7876843429,78.3823070571174,66.48736914062492
+
+2023-01-03 00:00:00,2025-06-18 00:00:00,"['Date', 'Goldpreis']","{'colsample_bytree': 0.2, 'learning_rate': 0.1, 'max_depth': 3, 'n_estimators': 1000, 'subsample': 0.8}",-60034.90310285108,68.25571210467056,55.621711914062416
+
+2024-01-02 00:00:00,2025-06-18 00:00:00,"['Date', 'Goldpreis']","{'colsample_bytree': 1.0, 'learning_rate': 0.1, 'max_depth': 5, 'n_estimators': 500, 'subsample': 1.0}",-38333.73938858279,58.03813032319995,44.94229296874992
+
+2025-01-02 00:00:00,2025-06-18 00:00:00,"['Date', 'Goldpreis']","{'colsample_bytree': 0.8, 'learning_rate': 0.1, 'max_depth': 5, 'n_estimators': 750, 'subsample': 0.8}",-11996.876865731221,50.08923686725769,42.69402636718742
+
+2021-02-08 00:00:00,2025-06-18 00:00:00,"['Date', 'Goldpreis', 'Goldpreis_gestern']","{'colsample_bytree': 0.2, 'learning_rate': 0.1, 'max_depth': 3, 'n_estimators': 1000, 'subsample': 1.0}",-53951.75748869614,56.95492756597663,45.55671874999989
+
+2022-01-03 00:00:00,2025-06-18 00:00:00,"['Date', 'Goldpreis', 'Goldpreis_gestern']","{'colsample_bytree': 0.8, 'learning_rate': 0.01, 'max_depth': 3, 'n_estimators': 500, 'subsample': 1.0}",-48279.7876843429,78.3823070571174,66.48736914062492
+
+2023-01-03 00:00:00,2025-06-18 00:00:00,"['Date', 'Goldpreis', 'Goldpreis_gestern']","{'colsample_bytree': 0.2, 'learning_rate': 0.1, 'max_depth': 3, 'n_estimators': 1000, 'subsample': 0.8}",-60034.90310285108,68.25571210467056,55.621711914062416
+
+2024-01-02 00:00:00,2025-06-18 00:00:00,"['Date', 'Goldpreis', 'Goldpreis_gestern']","{'colsample_bytree': 1.0, 'learning_rate': 0.1, 'max_depth': 5, 'n_estimators': 500, 'subsample': 1.0}",-38333.73938858279,58.03813032319995,44.94229296874992
+
+2025-01-02 00:00:00,2025-06-18 00:00:00,"['Date', 'Goldpreis', 'Goldpreis_gestern']","{'colsample_bytree': 0.8, 'learning_rate': 0.1, 'max_depth': 5, 'n_estimators': 750, 'subsample': 0.8}",-11996.876865731221,50.08923686725769,42.69402636718742
+
+2021-02-08 00:00:00,2025-06-18 00:00:00,"['Date', 'Goldpreis', 'SP500']","{'colsample_bytree': 0.2, 'learning_rate': 0.1, 'max_depth': 3, 'n_estimators': 1000, 'subsample': 1.0}",-53951.75748869614,56.95492756597663,45.55671874999989
+
+2022-01-03 00:00:00,2025-06-18 00:00:00,"['Date', 'Goldpreis', 'SP500']","{'colsample_bytree': 0.8, 'learning_rate': 0.01, 'max_depth': 3, 'n_estimators': 500, 'subsample': 1.0}",-48279.7876843429,78.3823070571174,66.48736914062492
+
+2023-01-03 00:00:00,2025-06-18 00:00:00,"['Date', 'Goldpreis', 'SP500']","{'colsample_bytree': 0.2, 'learning_rate': 0.1, 'max_depth': 3, 'n_estimators': 1000, 'subsample': 0.8}",-60034.90310285108,68.25571210467056,55.621711914062416
+
+2024-01-02 00:00:00,2025-06-18 00:00:00,"['Date', 'Goldpreis', 'SP500']","{'colsample_bytree': 1.0, 'learning_rate': 0.1, 'max_depth': 5, 'n_estimators': 500, 'subsample': 1.0}",-38333.73938858279,58.03813032319995,44.94229296874992
+
+2025-01-02 00:00:00,2025-06-18 00:00:00,"['Date', 'Goldpreis', 'SP500']","{'colsample_bytree': 0.8, 'learning_rate': 0.1, 'max_depth': 5, 'n_estimators': 750, 'subsample': 0.8}",-11996.876865731221,50.08923686725769,42.69402636718742
+
+
+probably the best idk (sets with only data from 2025 on seem better but that smells like overfitting IMO)
+2021-02-08 00:00:00,2025-06-18 00:00:00,"['Date', 'Goldpreis']","{'colsample_bytree': 0.2, 'learning_rate': 0.1, 'max_depth': 3, 'n_estimators': 1000, 'subsample': 1.0}",-53951.75748869614,56.95492756597663,45.55671874999989
