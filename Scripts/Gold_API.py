@@ -18,27 +18,23 @@ if "Time Series (Daily)" in data:
     # Die Daten in ein pandas DataFrame umwandeln
     df = pd.DataFrame.from_dict(time_series, orient='index')
     df = df.astype(float)  # Umwandeln der Daten in numerische Werte
+    df = df.rename(columns={'4. close': 'Goldpreis'})
+    df = df['Goldpreis']  # Spalten löschen
     df.index = pd.to_datetime(df.index)  # Index als Datum umwandeln
 
-    # Nur die Spalte '4. close' auswählen und umbenennen
-    df = df[['4. close']]
-    df = df.rename(columns={'4. close': 'Goldpreis'})
+    # Den Index 'Date' wieder in Spalte umwandeln
+    df = df.reset_index()
+    df.rename(columns={'index': 'Date'}, inplace=True)
 
-    # Die Spalte für den Preis am nächsten Tag erstellen
-    df['Goldpreis_gestern'] = df['Goldpreis'].shift(-1)
-
-    # Fehlende Werte am Ende auffüllen
-    df = df.dropna()
-
-    # In CSV-Datei speichern
-    df.to_csv(r'../data/Goldpreis.csv')
+    # Speichern der Daten als CSV-Datei
+    df.to_csv(r'../data/Goldpreis.csv', index=False)  # Speichert ohne Index
     print('Daten wurden erfolgreich als CSV gespeichert.')
 
     # Ausgabe der ersten Zeilen des DataFrames
     print(df.head())
     print(len(df))
-    print(df.index.min())  # Ältestes Datum
-    print(df.index.max())  # Neuestes Datum
+    print(df['Date'].min())  # Ältestes Datum
+    print(df['Date'].max())  # Neuestes Datum
 
 else:
     print("Fehlerhafte API-Antwort:")
