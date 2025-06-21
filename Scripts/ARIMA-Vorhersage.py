@@ -53,7 +53,7 @@ print(arima_forecast_Goldpreis)
 
 # Series in DataFrame umwandeln
 forecast_df = arima_forecast_Goldpreis.reset_index()
-forecast_df.columns = ['Datum', 'Prognose']
+forecast_df.columns = ['date', 'prediction']
 
 # Speichern als CSV
 forecast_df.to_csv('Goldpreis_Vorhersage.csv', index=False)
