@@ -2,7 +2,7 @@ import pandas as pd
 
 gold_data = pd.read_csv('../data/combined_gold_economic_factors.csv', index_col=0)
 gold_data.reset_index(inplace=True)
-gold_data.columns = ['Date', 'Goldpreis','Goldpreis_gestern','Gold_ETF','Dollar_Index','SP500','Oil_Price']
+gold_data.columns = ['Date', 'Goldpreis','Gold_ETF','Dollar_Index','SP500','Oil_Price']
 
 
 #Auf Null Werte prüfen
