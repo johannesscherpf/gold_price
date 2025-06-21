@@ -15,7 +15,7 @@ combined_data['Date'] = pd.to_datetime(combined_data['Date'])
 combined_data.sort_values(by='Date', ascending=True, inplace=True)
 
 #Spalten auswählen die benutzt werden sollen
-combined_data = combined_data[['Date','Goldpreis']]
+combined_data = combined_data[['Date','Goldpreis','Goldpreis_gestern','SP500','Oil_Price','Gold_ETF']]
 #Zeitraum der Daten auswählen
 combined_data = combined_data[combined_data['Date'] >= '2021-01-01']
 
@@ -52,7 +52,7 @@ X_testprint.to_csv('Xtest.csv', index=True)
 # Hyperparameter-Tuning
 param_grid = {
     'n_estimators': [ 500,750, 1000],
-    'learning_rate': [0.01, 0.1],
+    'learning_rate': [0.001,0.005,0.01, 0.1],
     'max_depth': [3, 5],
     'subsample': [ 0.8, 1.0],
     'colsample_bytree': [0,0.2,0.8, 1.0]
@@ -61,7 +61,7 @@ param_grid = {
 tscv = TimeSeriesSplit(n_splits=5)
 
 xgb = XGBRegressor(objective='reg:squarederror')
-grid_search = GridSearchCV(estimator=xgb, param_grid=param_grid ,scoring='neg_mean_squared_error', cv=tscv, verbose=3, n_jobs=-1)
+grid_search = GridSearchCV(estimator=xgb, param_grid=param_grid ,scoring='neg_mean_absolute_error', cv=tscv, verbose=3, n_jobs=-1)
 grid_search.fit(X_train, y_train)
 
 # Beste Parameter und Modell
@@ -100,7 +100,7 @@ plt.plot(test_date_range, y_pred, label='Vorhergesagter Preis', color='lightblue
 
 # Vorhersage für die Zukunft vorbereiten
 last_known_data = X[-1].reshape(1, -1)
-future_pred_dates = pd.date_range(start='2025-06-19', periods=10, freq='B')
+future_pred_dates = pd.date_range(start='2025-06-09', periods=5, freq='B')
 predictions = []
 
 #Vorhersage des Goldpreises

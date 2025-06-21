@@ -43,3 +43,11 @@ first_date,last_date,columns,best_params,mean_test_score,rmse,mae
 
 probably the best idk (sets with only data from 2025 on seem better but that smells like overfitting IMO)
 2021-02-08 00:00:00,2025-06-18 00:00:00,"['Date', 'Goldpreis']","{'colsample_bytree': 0.2, 'learning_rate': 0.1, 'max_depth': 3, 'n_estimators': 1000, 'subsample': 1.0}",-53951.75748869614,56.95492756597663,45.55671874999989
+first_date,last_date,columns,best_params,mean_test_score,rmse,mae
+2021-02-08 00:00:00,2025-06-18 00:00:00,"['Date', 'Goldpreis']","{'colsample_bytree': 0.2, 'learning_rate': 0.1, 'max_depth': 3, 'n_estimators': 1000, 'subsample': 1.0}",-53951.75748869614,56.95492756597663,45.55671874999989
+first_date,last_date,columns,best_params,mean_test_score,rmse,mae
+2021-02-08 00:00:00,2025-06-18 00:00:00,"['Date', 'Goldpreis', 'Goldpreis_gestern', 'SP500', 'Oil_Price', 'Gold_ETF']","{'colsample_bytree': 0.2, 'learning_rate': 0.1, 'max_depth': 3, 'n_estimators': 1000, 'subsample': 1.0}",-53951.75748869614,56.95492756597663,45.55671874999989
+first_date,last_date,columns,best_params,mean_test_score,rmse,mae
+2021-02-08 00:00:00,2025-06-18 00:00:00,"['Date', 'Goldpreis', 'Goldpreis_gestern', 'SP500', 'Oil_Price', 'Gold_ETF']","{'colsample_bytree': 0.2, 'learning_rate': 0.1, 'max_depth': 3, 'n_estimators': 1000, 'subsample': 1.0}",-150.20691309151786,56.95492756597663,45.55671874999989
+first_date,last_date,columns,best_params,mean_test_score,rmse,mae
+2021-02-08 00:00:00,2025-06-18 00:00:00,"['Date', 'Goldpreis', 'Goldpreis_gestern', 'SP500', 'Oil_Price', 'Gold_ETF']","{'colsample_bytree': 0.2, 'learning_rate': 0.1, 'max_depth': 3, 'n_estimators': 1000, 'subsample': 1.0}",-150.20691309151786,56.95492756597663,45.55671874999989

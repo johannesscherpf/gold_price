@@ -1,65 +1,61 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+from sklearn.preprocessing import MinMaxScaler
 from xgboost import XGBRegressor
 from sklearn.metrics import mean_squared_error
+from sklearn.model_selection import RandomizedSearchCV, GridSearchCV
 
 # Daten laden und vorbereiten
-combined_data = pd.read_csv('../data/combined_gold_economic_factors_withweekdays.csv')
-combined_data['Date'] = pd.to_datetime(combined_data['Date'])
-combined_data.sort_values(by='Date', ascending=True, inplace=True)
+gold_df = pd.read_csv('../data/Goldpreis.csv')
+gold_df['Date'] = pd.to_datetime(gold_df['Date'])
+gold_df.set_index('Date', drop=True, inplace=True)
 
-# Merkmale und Zielvariable definieren
-features = ['Goldpreis', 'Goldpreis_gestern']
-X = combined_data[features]
-y = combined_data['Goldpreis']
+# Vorheriger Goldpreis generieren
+gold_df['Goldpreis_gestern'] = gold_df['Goldpreis'].shift(1)
+gold_df = gold_df.dropna()
+gold_df.columns = ['Goldpreis', 'Goldpreis_gestern']
+gold_df['Goldpreis'] = gold_df['Goldpreis'].astype(float)
 
-# Train-Test-Split
-train_size = int(len(X) * 0.8)  # Verwenden Sie 80% der Daten für das Training
-X_train, X_test = X[:train_size], X[train_size:]
-y_train, y_test = y[:train_size], y[train_size:]
+# Skalieren der Daten
+scaler = MinMaxScaler()
+gold_df = pd.DataFrame(data=scaler.fit_transform(gold_df), columns=gold_df.columns, index=gold_df.index)
 
-# XGBoost-Modelltraining
-model = XGBRegressor(objective='reg:squarederror', n_estimators=1000, learning_rate=0.01, max_depth=5)
-model.fit(X_train, y_train)
+# Zeitweilige Einordnung nach 2020 als Split
+base_date = '2020-01-01'
+train = gold_df.loc[gold_df.index < base_date]
+valid = gold_df.loc[gold_df.index >= base_date]
 
-# Vorhersagen auf Testdaten
-y_pred_test = model.predict(X_test)
+# Konvertieren zu Arrays ohne festes reshape
+X_train = np.array(train['Goldpreis']).reshape(-1, 1)
+y_train = np.array(train['Goldpreis_gestern']).reshape(-1, 1)
+X_valid = np.array(valid['Goldpreis']).reshape(-1, 1)
+y_valid = np.array(valid['Goldpreis_gestern']).reshape(-1, 1)
 
-# RMSE Berechnung auf Testdaten
-rmse = np.sqrt(mean_squared_error(y_test, y_pred_test))
-print(f"RMSE auf Testdaten: {rmse:.2f}")
+print(f"Trainingsdatenformate: {X_train.shape}, {y_train.shape}")
+print(f"Validierungsdatenformate: {X_valid.shape}, {y_valid.shape}")
 
-# Visualisierung der Ergebnisse auf den Testdaten
-test_date_range = combined_data['Date'][train_size:]
+# Hyperparameter-Tuning mit RandomizedSearchCV und GridSearchCV
+xgb_params = {
+    'booster': ['gblinear'],
+    'objective': ['reg:squarederror', 'reg:squaredlogerror'],
+    'eval_metric': ['mae', 'rmse']
+}
 
-plt.figure(figsize=(14, 7))
-plt.plot(test_date_range, y_test, label='Tatsächlicher Preis', color='lightblue')
-plt.plot(test_date_range, y_pred_test, label='Vorhergesagter Preis', color='blue', linestyle='dashed')
-plt.title('Tatsächlicher vs. Vorhergesagter Goldpreis (Testdaten)')
-plt.xlabel('Datum')
-plt.ylabel('Goldpreis')
-plt.xticks(rotation=45)
-plt.legend()
-plt.tight_layout()
-plt.show()
+xgb_randomized_search = RandomizedSearchCV(XGBRegressor(), param_distributions=xgb_params, n_iter=4, cv=3)
+xgb_randomized_search_results = xgb_randomized_search.fit(X_train, y_train)
 
-# Vorhersage für die nächsten 10 Tage
-last_known_data = X.iloc[-1].copy().values.reshape(1, -1)
-future_pred_dates = pd.date_range(start='2025-06-18', periods=10, freq='B')
-future_predictions = []
+xgb_grid_search = GridSearchCV(XGBRegressor(), param_grid=xgb_params, cv=3)
+xgb_grid_search_results = xgb_grid_search.fit(X_train, y_train)
 
-for date in future_pred_dates:
-    pred = model.predict(last_known_data)[0]
-    future_predictions.append(pred)
-    last_known_data = np.array([[pred, last_known_data[0, 0]]])  # Update Goldpreis_gestern mit der neuen Vorhersage
+print(f"Beste Parameter aus RandomizedSearch: {xgb_randomized_search_results.best_params_}")
+print(f"Beste Parameter aus GridSearch: {xgb_grid_search_results.best_params_}")
 
-# Zukünftige Vorhersagen ausgeben
-prediction_df = pd.DataFrame({
-    'date': future_pred_dates,
-    'prediction': future_predictions
-})
-print(prediction_df)
+# Finale Modellanpassung mit besten Parametern
+xgb_reg = XGBRegressor(
+    booster=xgb_grid_search_results.best_params_['booster'],
+    eval_metric=xgb_grid_search_results.best_params_['eval_metric'],
+    objective=xgb_grid_search_results.best_params_['objective']
+)
+xgb_reg.fit(X_train, y_train)
 
-# Speichern der Vorhersagen
-prediction_df.to_csv('gold_price_future_predictions.csv', index=False)
