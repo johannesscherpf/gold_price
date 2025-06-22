@@ -46,15 +46,21 @@ plt.title('ARIMA Vorhersage für den Goldpreis')
 plt.legend()
 plt.show()
 
-# Vorhersage für die Testdaten
-arima_forecast_Goldpreis = arima_model_Goldpreis_fit.forecast(steps=6)
+# Neues Training
 
-print(arima_forecast_Goldpreis)
+# ARIMA Modell fitten
+arima_model_Goldpreis2 = ARIMA(df_goldpreis, order=(20, 2, 1))
+arima_model_Goldpreis_fit2 = arima_model_Goldpreis2.fit()
+
+# Vorhersage für den Testzeitraum
+arima_forecast_Goldpreis2 = arima_model_Goldpreis_fit2.forecast(steps=10)
+
+print(arima_forecast_Goldpreis2)
 
 # Series in DataFrame umwandeln
-forecast_df = arima_forecast_Goldpreis.reset_index()
+forecast_df = arima_forecast_Goldpreis2.reset_index()
 forecast_df.columns = ['date', 'prediction']
 
 # Speichern als CSV
-forecast_df.to_csv('Goldpreis_Vorhersage.csv', index=False)
+forecast_df.to_csv('Goldpreis_Vorhersage_Data_Works.csv', index=False)
 print("Vorhersage erfolgreich gespeichert.")
